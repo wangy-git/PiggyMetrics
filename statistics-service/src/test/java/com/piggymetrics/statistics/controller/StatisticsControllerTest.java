@@ -3,7 +3,11 @@ package com.piggymetrics.statistics.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import com.piggymetrics.statistics.StatisticsApplication;
-import com.piggymetrics.statistics.domain.*;
+import com.piggymetrics.statistics.domain.Account;
+import com.piggymetrics.statistics.domain.Currency;
+import com.piggymetrics.statistics.domain.Item;
+import com.piggymetrics.statistics.domain.Saving;
+import com.piggymetrics.statistics.domain.TimePeriod;
 import com.piggymetrics.statistics.domain.timeseries.DataPoint;
 import com.piggymetrics.statistics.domain.timeseries.DataPointId;
 import com.piggymetrics.statistics.service.StatisticsService;
@@ -13,7 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -25,7 +29,9 @@ import java.util.Date;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -33,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = StatisticsApplication.class)
+@SpringBootTest(classes = StatisticsApplication.class)
 @WebAppConfiguration
 public class StatisticsControllerTest {
 
